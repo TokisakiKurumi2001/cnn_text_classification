@@ -1,16 +1,18 @@
 import torch
 import torch.nn as nn
 import pytorch_lightning as pl
+from typing import List
 from cnn_text_classification import CNNForSeqClassifier
 import torchmetrics
 
 class LitCNNForSeqClassifier(pl.LightningModule):
     def __init__(
-        self, num_classes: int
+        self, num_classes: int, embed_dim: int, kernel_sizes: List[int],
+        num_channels: List[int], dropout: float
     ):
         super(LitCNNForSeqClassifier, self).__init__()
         self.cnn_cls = CNNForSeqClassifier(
-            num_classes
+            num_classes, embed_dim, kernel_sizes, num_channels, dropout
         )
         self.num_classes = num_classes
         self.main_loss = nn.CrossEntropyLoss()

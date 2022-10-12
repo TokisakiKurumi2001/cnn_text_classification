@@ -8,7 +8,8 @@ if __name__ == "__main__":
 
     # model
     lit_cnn_cls = LitCNNForSeqClassifier(
-        num_classes=5
+        num_classes=5, embed_dim=512, kernel_sizes=[3, 4, 5],
+        num_channels=[512, 512, 512], dropout=0.1
     )
 
     # train model
