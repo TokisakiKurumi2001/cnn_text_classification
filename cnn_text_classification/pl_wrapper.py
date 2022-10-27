@@ -43,7 +43,7 @@ class LitCNNForSeqClassifier(pl.LightningModule):
         self.valid_acc.update(preds, labels)
         return loss
 
-    def validation_step_end(self, outputs):
+    def validation_epoch_end(self, outputs):
         self.log('valid/acc_epoch', self.valid_acc.compute(), on_epoch=True, sync_dist=True)
         self.valid_acc.reset()
 
